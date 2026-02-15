@@ -1,59 +1,69 @@
-# Selectel
+# Тестовое задание на позицию стажёра Frontend. Конфигуратор облачных услуг Selectel
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+**Выполнил:** Башаримов Евгений Александрович
 
-## Development server
+Приложение на **Angular 19+** с двумя страницами: приветственная страница и страница конфигуратора с меню категорий и доп. опциями в виде чекбоксов. На странице конфигуратора отображаются выбранная категория, количество выбранных элементов и их общая стоимость (только для текущей страницы/категории). Данные заданы статичным JSON.
 
-To start a local development server, run:
+---
+
+## Стек технологий
+
+- **HTML, CSS** (вёрстка, Tailwind CSS)
+- **TypeScript**
+- **Angular 19+** (Angular 21 в проекте)
+
+---
+
+## Задание
+
+Реализовано по ТЗ:
+
+1. **Первая страница** текст приветствия и ссылка на вторую страницу (конфигуратор).
+2. **Вторая страница** меню со списком элементов в виде чекбоксов и значением (цена).
+3. **В отдельной панели** выбранный в данный момент сервер, количество выбранных элементов (доп. услуг) на странице и их общее значение. Счётчики и сумма считаются изолированно по текущей категории (выделенный сервер или облачный сервер).
+
+Содержимое меню и пунктов вынесено в статичный JSON (`configurator.data.ts`).
+
+---
+
+## Оформление и бренд Selectel
+
+Для того, чтобы приложение выглядело как реальный продукт, использованы элементы фирменного стиля Selectel:
+
+- **Логотип** — официальный SVG-логотип Selectel.
+- **Иконки** — стилизованные иконки категорий в фирменных цветах.
+- **Цвета** — Data Blue, красный акцент Signal Red.
+- **Страница конфигуратора** по структуре и подаче контента повторяет раздел конфигуратора на официальном сайте Selectel: базовая конфигурация сервера, блок доп. услуг (с добавлнными чекбоксами), блок «Спецификация заказа».
+
+Дизайн не был обязательным, но использование стиля бренда и структуры сайта мне показалось наиболее правильным.
+
+---
+
+## Отклонение от макета
+
+Я немного отошёл от минимального макета из задания, чтобы лучше продемонстрировать умения и понимание того, как должен выглядеть качественный проект в продакшене.
+
+---
+
+## Опыт: React и Angular
+
+Обычно я специализируюсь в основном на React, но данный проект разработал на Angular. Мне удалось использовать другой другой фреймворк и применить принципы, которые я использую в разработке.
+
+---
+
+## Использование нейросети
+
+При разработке я использовал нейросеть в качестве помощника. Я использовал его для помощи с выбором структуры компонентов Angular, сравнения концепций с React, придумывания части текстов, а также для устранения отдельных ошибок. Итоговую архитектуру, логику и код я проверял и дорабатывал сам.
+
+---
+
+## Запуск
 
 ```bash
-ng serve
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Открыть в браузере: [http://localhost:4200](http://localhost:4200).
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Сборка: `npm run build`.

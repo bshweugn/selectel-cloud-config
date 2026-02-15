@@ -1,0 +1,103 @@
+<div class="flex flex-col h-screen overflow-hidden">
+  <app-app-header />
+
+  <div class="flex flex-1 min-h-0 overflow-hidden">
+    <aside class="w-64 shrink-0 border-r border-gray-200 bg-gray-50 overflow-y-auto">
+      <nav class="flex flex-col gap-2">
+        @for (cat of categories; track cat.id) {
+        <button type="button" class="relative text-left p-4 rounded-none transition w-full flex flex-col gap-0.5"
+          [class.bg-transparent]="currentCategoryId() !== cat.id"
+          [class.bg-gray-200/50]="currentCategoryId() === cat.id"
+          [class.text-gray-800]="currentCategoryId() !== cat.id"
+          [class.font-medium]="currentCategoryId() === cat.id"
+          (click)="setCategory(cat.id)">
+          @if (currentCategoryId() === cat.id) {
+          <span class="absolute left-0 top-0 bottom-0 w-0.5 bg-[#eb4247]" aria-hidden="true"></span>
+          }
+          <span class="flex items-center gap-4">
+            <app-icon [icon]="cat.icon" [size]="16" />
+            <span class="font-medium">{{ cat.name }}</span>
+          </span>
+          <p class="text-sm opacity-70 pl-[32px]">{{ cat.description }}</p>
+        </button>
+        }
+      </nav>
+    </aside>
+
+    <main class="container flex-1 min-w-0 min-h-0 overflow-y-auto">
+      <app-breadcrumbs [items]="breadcrumbsItems()" />
+      <div class="flex flex-row">
+        <div class="col-lg-7">
+          @if (currentCategory(); as cat) {
+          <h2 class="mb-6">{{ cat.baseConfiguration.title }}</h2>
+          <div class="p-6 mb-16 border border-[rgb(235,239,241)] rounded-lg">
+            <h3 class="mb-6">Конфигурация</h3>
+            <dl class="grid gap-2 sm:grid-cols-1">
+              @for (spec of cat.baseConfiguration.specs; track spec.label) {
+              <div class="flex gap-2 items-baseline">
+                <dt class="text-gray-700 shrink-0 min-w-[100px]">{{ spec.label }}</dt>
+                <dd class="text-gray-600 text-left min-w-0">{{ spec.value }}</dd>
+              </div>
+              }
+            </dl>
+          </div>
+
+          <section>
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Дополнительные услуги</h3>
+            @if (currentAddOns().length === 0) {
+            <p class="text-gray-500">Нет доступных доп. услуг.</p>
+            } @else {
+            <ul class="space-y-3 list-none pl-0 mb-9">
+              @for (item of currentAddOns(); track item.id) {
+              <li>
+                <app-addon-row
+                  [item]="item"
+                  [selected]="isSelected(item.id)"
+                  (toggled)="toggle($event)"
+                />
+              </li>
+              }
+            </ul>
+            }
+          </section>
+          }
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-8 ml-lg-auto">
+          <div
+            class="px-4 py-6 mb-16 border border-[rgb(181,189,194)] rounded-lg flex flex-col shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+            <h3 class="mb-6 w-max">Спецификация заказа</h3>
+            @if (currentCategory(); as cat) {
+            <h4 class="mb-2 w-max">Сервер</h4>
+            <div class="flex flex-row justify-between gap-2 w-full">
+              <span class="mb-6">{{ cat.baseConfiguration.title }}</span>
+              <span>
+                {{ cat.baseConfiguration.price | price }} ₽
+              </span>
+            </div>
+            @if (selectedAddOnsCount() > 0) {
+            <div class="flex flex-col gap-2 w-full mb-2">
+              <div class="flex flex-row justify-between gap-2 w-full items-baseline">
+                <h4 class="w-max">Доп. услуги</h4>
+                <span>{{ selectedAddOnsCount() }} {{ addOnsCountLabel(selectedAddOnsCount()) }}, {{ addOnsTotal() | price }} ₽</span>
+              </div>
+              <ul class="flex flex-col gap-1.5 list-none pl-0">
+                @for (addon of selectedAddOnsList(); track addon.label) {
+                <li class="flex flex-row justify-between gap-2">
+                  <span>{{ addon.label }}</span>
+                  <span>{{ addon.value | price }} ₽</span>
+                </li>
+                }
+              </ul>
+            </div>
+            }
+            <div class="flex flex-row gap-2 justify-between items-center h3 mt-10">
+              <span>Итого:</span>
+              <span class="text-right">{{ fullTotal() | price }} ₽/мес.</span>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
