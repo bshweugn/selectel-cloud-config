@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:gh": "ng build --base-href=/selectel-cloud-config/",
-    "deploy:gh": "npm run build:gh && npx gh-pages -d dist/selectel/browser",
+    "build:gh": "ng build --configuration=github",
+    "deploy:gh": "npm run build:gh && node scripts/deploy-gh.cjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:selectel": "node dist/selectel/server/server.mjs"

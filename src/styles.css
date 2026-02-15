@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
-body{
-    min-width: 320px;
-    font-family: Manrope, Roboto, sans-serif;
+body {
+  min-width: 320px;
+  font-family: 'Manrope', 'Roboto', system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.5;
     font-variant: unset;

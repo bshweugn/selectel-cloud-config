@@ -34,6 +34,15 @@
             }
           },
           "configurations": {
+            "github": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/app.config.ts",
+                  "with": "src/app/app.config.gh.ts"
+                }
+              ],
+              "baseHref": "/selectel-cloud-config/"
+            },
             "production": {
               "budgets": [
                 {
